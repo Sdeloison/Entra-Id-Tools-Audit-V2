@@ -1,0 +1,16 @@
+# Tenant data and local output
+reports/
+*.tenant-report.json
+*.local.json
+*.log
+
+# Build/dependency output
+node_modules/
+coverage/
+*.zip
+*.psd1.local
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

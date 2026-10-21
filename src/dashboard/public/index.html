@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entra tenant audit reports</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/vendor/msal-browser.min.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Microsoft Entra tenant audit</h1>
+    <p class="warning">Reports contain sensitive identity and security information. Access and exports are logged and governed by your organization's retention policy.</p>
+    <button id="sign-in" type="button">Sign in</button>
+    <button id="sign-out" type="button" hidden>Sign out</button>
+  </header>
+  <main>
+    <section aria-labelledby="summary-title">
+      <h2 id="summary-title">Coverage summary</h2>
+      <p id="message" role="status" aria-live="polite">Sign in with an authorized reader account to load reports.</p>
+      <div id="summary" class="cards"></div>
+    </section>
+    <section aria-labelledby="reports-title">
+      <h2 id="reports-title">Reports</h2>
+      <label for="search">Search sections or warnings</label>
+      <input id="search" type="search" autocomplete="off">
+      <label for="status-filter">Coverage status</label>
+      <select id="status-filter">
+        <option value="">All statuses</option>
+        <option>complete</option><option>partial</option><option>failed</option><option>not_configured</option>
+      </select>
+      <label for="report-list">Run (50 per page, oldest first)</label>
+      <select id="report-list"></select>
+      <button id="previous-page" type="button" disabled>Previous page</button>
+      <button id="next-page" type="button" disabled>Next page</button>
+      <button id="download" type="button" disabled>Export selected report JSON</button>
+      <div id="sections" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer>Use the report source and collection window when interpreting results. No observed event does not prove non-use.</footer>
+</body>
+</html>

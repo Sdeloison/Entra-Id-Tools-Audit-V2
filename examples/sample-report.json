@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0",
+  "runId": "00000000-0000-4000-8000-000000000000",
+  "tenantId": "00000000-0000-4000-8000-000000000001",
+  "startedAtUtc": "2026-01-01T00:00:00Z",
+  "completedAtUtc": "2026-01-01T00:02:00Z",
+  "windowStartUtc": "2025-12-02T00:00:00Z",
+  "windowEndUtc": "2026-01-01T00:00:00Z",
+  "sections": {
+    "users": {
+      "status": "complete",
+      "collectedAtUtc": "2026-01-01T00:01:00Z",
+      "windowStartUtc": null,
+      "windowEndUtc": null,
+      "recordCount": 1,
+      "warnings": [],
+      "errors": [],
+      "records": [
+        {
+          "id": "00000000-0000-4000-8000-000000000002",
+          "displayName": "Synthetic Example User",
+          "userPrincipalName": "user@example.invalid",
+          "userType": "Member",
+          "accountEnabled": true,
+          "createdDateTime": "2024-01-01T00:00:00Z",
+          "isGuest": false,
+          "source": "Microsoft Graph v1.0",
+          "collectedAtUtc": "2026-01-01T00:01:00Z",
+          "collectionStatus": "collected"
+        }
+      ]
+    },
+    "financeOperations": {
+      "status": "not_configured",
+      "collectedAtUtc": "2026-01-01T00:01:00Z",
+      "windowStartUtc": null,
+      "windowEndUtc": null,
+      "recordCount": 0,
+      "warnings": ["A supported F&O integration is not configured."],
+      "errors": [],
+      "records": []
+    }
+  }
+}

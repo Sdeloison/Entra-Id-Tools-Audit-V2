@@ -1,0 +1,23 @@
+{
+  "name": "entra-audit-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Authenticated report viewer for the read-only Entra tenant audit",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test ../../tests/dashboard.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@azure/identity": "4.6.0",
+    "@azure/storage-blob": "12.26.0",
+    "@azure/msal-browser": "2.38.4",
+    "jose": "5.9.6"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  }
+}

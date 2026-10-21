@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0",
+  "lookbackDays": 30,
+  "maxGraphRecords": 5000,
+  "maxGroupsForMemberships": 500,
+  "azureSubscriptionIds": [],
+  "financeOperations": {
+    "configured": false,
+    "status": "not_configured"
+  }
+}

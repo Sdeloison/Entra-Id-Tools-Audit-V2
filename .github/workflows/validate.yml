@@ -1,0 +1,46 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Install PowerShell modules
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module Pester -MinimumVersion 5.5.0 -Scope CurrentUser -Force
+          Install-Module PSScriptAnalyzer -Scope CurrentUser -Force
+      - name: PowerShell formatting and static analysis
+        shell: pwsh
+        run: |
+          $files = Get-ChildItem ./src,./scripts -Recurse -File | Where-Object { $_.Extension -in '.ps1','.psm1' }
+          foreach ($file in $files) {
+            $source = Get-Content -LiteralPath $file.FullName -Raw
+            $formatted = Invoke-Formatter -ScriptDefinition $source
+            if ($source.Replace("`r`n","`n") -cne $formatted.Replace("`r`n","`n")) {
+              Write-Error "PowerShell formatting differs: $($file.FullName)"
+              exit 1
+            }
+          }
+          $errors = Invoke-ScriptAnalyzer -Path ./src,./scripts -Recurse -Severity Error
+          if ($errors) { $errors | Format-Table -AutoSize; exit 1 }
+      - name: PowerShell tests
+        shell: pwsh
+        run: Invoke-Pester ./tests -CI
+      - name: Bicep build
+        run: |
+          az bicep install
+          az bicep lint --file infra/main.bicep
+          az bicep build --file infra/main.bicep --stdout > /dev/null
+      - name: Dashboard tests
+        run: npm --prefix src/dashboard ci && npm --prefix src/dashboard test
+      - name: Dependency audit
+        run: npm --prefix src/dashboard audit --audit-level=moderate

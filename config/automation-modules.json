@@ -1,0 +1,21 @@
+{
+  "runtime": "PowerShell 7.2",
+  "modules": [
+    {
+      "name": "Az",
+      "version": "16.4.0",
+      "provides": [
+        "Az.Accounts",
+        "Az.Automation",
+        "Az.Resources",
+        "Az.ResourceGraph",
+        "Az.Storage"
+      ]
+    },
+    {
+      "name": "Microsoft.Graph.Authentication",
+      "version": "2.25.0",
+      "purpose": "Managed-identity Graph authentication and Invoke-MgGraphRequest"
+    }
+  ]
+}
